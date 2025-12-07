@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+
+<style>
+    :root {
+        --toyota-red: #EB0A1E;
+        --toyota-black: #000000;
+        --toyota-gray: #58595B;
+        --toyota-light-gray: #f5f5f5;
+        --toyota-white: #FFFFFF;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: url("https://hips.hearstapps.com/hmg-prod/images/04-68f69e625ee04.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: var(--toyota-black);
+    }
+
+    .logo-container {
+        width: 180px;
+        padding: 20px 30px;
+    }
+
+    .logo-container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: -30px auto; /* moved upward */
+        background: rgba(255, 255, 255, 0.4); /* more transparent */
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        border-top: 4px solid var(--toyota-red);
+        backdrop-filter: blur(6px);
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+        color: var(--toyota-red);
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+        padding: 10px;
+        border: 1px solid var(--toyota-gray);
+        border-radius: 5px;
+        font-size: 15px;
+        outline: none;
+        background: rgba(255,255,255,0.95);
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+        border-color: var(--toyota-red);
+        box-shadow: 0 0 4px rgba(235,10,30,0.4);
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .checkbox-label input {
+        margin-right: 10px;
+        transform: scale(1.2);
+    }
+
+    .btn-submit {
+    background: var(--toyota-red);
+    color: var(--toyota-white);
+    padding: 12px 20px;
+    width: 40%;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px auto 0 auto; /* shifted down 20px more */
+    font-weight: bold;
+    display: block; /* ensures horizontal centering */
+}
+
+    .btn-submit:hover {
+        background: #C20A1E;
+    }
+</style>
+</head>
+
+<body onload="preFill()">
+
+<!-- Logo -->
+<div class="logo-container">
+    <img src="https://dataeq.com/hubfs/ALJ-logo.png" alt="ALJ Logo">
+</div>
+
+<div class="container">
+    <h2>Book a Test Drive for Toyota Land Cruiser 2026</h2>
+
+    <form name="ProfileForm" onsubmit="return CheckInputs();" action="https://suite55.emarsys.net/u/register.php" method="get">
+
+        <!-- Hidden fields (unchanged) -->
+        <input type="hidden" name="CID" value="1017410227">
+        <input type="hidden" name="SID" value="">
+        <input type="hidden" name="UID" value="">
+        <input type="hidden" name="f" value="1547">
+        <input type="hidden" name="p" value="2">
+        <input type="hidden" name="a" value="r">
+        <input type="hidden" name="el" value="">
+        <input type="hidden" name="llid" value="">
+        <input type="hidden" name="c" value="">
+        <input type="hidden" name="counted" value="">
+        <input type="hidden" name="RID" value="">
+        <input type="hidden" name="mailnow" value="">
+
+        <!-- First Name -->
+        <div class="form-group">
+            <label for="inp_1">First Name</label>
+            <input type="text" name="inp_1" maxlength="60" id="inp_1">
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
+            <label for="inp_2">Last Name</label>
+            <input type="text" name="inp_2" maxlength="60" id="inp_2">
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="inp_3">Email</label>
+            <input type="text" name="inp_3" maxlength="255" id="inp_3">
+        </div>
+
+        <!-- Mobile -->
+        <div class="form-group">
+            <label for="inp_37">Mobile</label>
+            <input type="text" name="inp_37" maxlength="60" id="inp_37">
+        </div>
+
+        <!-- Model -->
+        <div class="form-group">
+            <label for="inp_10060">Model</label>
+            <select name="inp_10060" id="inp_10060" size="1">
+                <option value=""></option>
+                <option value="1">AX-1</option>
+                <option value="2">AX-2</option>
+                <option value="3">AX-3</option>
+                <option value="4">AX-S</option>
+            </select>
+        </div>
+
+        <!-- Opt-in -->
+        <div style="margin-bottom: 10px;" class="checkbox-label">
+            <input tabindex="882" type="checkbox" name="optin" value="y">
+            I would like to receive special product or service offers by Abdul Lateef Jameel Motors.
+        </div>
+
+        <!-- Submit Button -->
+        <input aria-label="Register" tabindex="993" type="button" onclick="javascript:SubmitIt()" name="submit1" value="Register" class="btn-submit">
+
+    </form>
+</div>
+
+<!-- ALL ORIGINAL JAVASCRIPT BELOW (unchanged) -->
+<script>
+function onbeforesubmit() { return true; }
+</script>
+
+<script>
+var error;
+var form_lanuage = 'en';
+
+function is_0_valid() {
+    count = 0;
+    if (document.ProfileForm.optin) {
+        if (document.ProfileForm.optin.checked) {
+            if (document.getElementsByName('interest[]')) {
+                if (document.getElementsByName('interest[]').length > 0) {
+                    Interest = document.getElementsByName('interest[]');
+                    for (i = 0; i < Interest.length; i++) {
+                        if (Interest[i].checked) ++count;
+                    }
+                    if (count == 0) {
+                        error += "Interests:";
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+function is_1_valid(input) {
+    if (input == "") { error += "First Name: missing data!\n"; return false; }
+    return true;
+}
+
+function is_2_valid(input) {
+    if (input == "") { error += "Last Name: missing data!\n"; return false; }
+    return true;
+}
+
+function is_3_valid(input) {
+    if (input == "") { error += "Email: missing data!\n"; return false; }
+    return true;
+}
+
+function is_37_valid(input) {
+    if (input == "") { error += "Mobile: missing data!\n"; return false; }
+    return true;
+}
+
+function is_10060_valid(input) {
+    if (input == "") { error += "Model: missing data!\n"; return false; }
+    return true;
+}
+
+function CheckInputs() {
+    var check_ok = true;
+    error = "Wrong input!\n";
+
+    check_ok = (is_0_valid('null') && check_ok);
+    check_ok = (is_1_valid(document.ProfileForm.inp_1.value) && check_ok);
+    check_ok = (is_2_valid(document.ProfileForm.inp_2.value) && check_ok);
+    check_ok = (is_3_valid(document.ProfileForm.inp_3.value) && check_ok);
+    check_ok = (is_37_valid(document.ProfileForm.inp_37.value) && check_ok);
+    check_ok = (is_10060_valid(document.ProfileForm.inp_10060.options[document.ProfileForm.inp_10060.selectedIndex].value) && check_ok);
+
+    if (!check_ok) alert(error);
+    return check_ok;
+}
+</script>
+
+<script>
+function SubmitIt() {
+    if (CheckInputs() == true) {
+        if (window.onbeforesubmit) onbeforesubmit();
+        document.ProfileForm.submit();
+    }
+}
+</script>
+
+<script>
+var multiFields = new Array();
+var dateFields = new Array();
+multiFields["interest[]"] = "interest";
+multiFields["optin"] = "optin";
+var arr_optin = new Array();
+arr_optin["True"] = "y";
+var arr_interest = new Array();
+</script>
+
+<script src="https://suite55.emarsys.net/u/nprefill.js"></script>
+
+</body>
+</html>
